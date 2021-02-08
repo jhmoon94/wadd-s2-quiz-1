@@ -12,7 +12,11 @@ const knex = require('./db/client'); // you will need to create this file
 function d() {
   // your knex query here
   // `id` of 0 in a table called "students"
-
+  return knex
+  .select('*')
+  .from('students')
+  .where('id', 0)
+  .toString();
 }
 
 d()
