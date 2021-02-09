@@ -42,12 +42,14 @@ const knex = require('./db/client');
 
 function f() {
   // write knex query here. Rememger to call toString()
-  return knex
-  .select('*')
-  .from('students')
-  .where('first_name', 'ilike', 'po%')
-  .orderBy('first_name', 'desc')
-  .toString();
+  
+  return knex('hosts')
+    .join('listings', 'host.id', '=', 'listings.host_id')
+    .select("host.id", "host.host_url", "host.host_since", "listings.name")
+    .toString();
 }
+
+f();
+
 
 module.exports = f;
